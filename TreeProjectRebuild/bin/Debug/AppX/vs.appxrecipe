@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>KEKE</Machine>
+    <WindowsUser>saucy</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <RegisteredManifestChecksum>572013F80F6189627991C8E37E5C40FBEDE57BABDED5A42F8F359A57FBD20CB2</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>f91b8226-969e-4c7d-ae28-870f4aaf4751_1.0.0.0_neutral__88x9h845m1f2c</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>f91b8226-969e-4c7d-ae28-870f4aaf4751_88x9h845m1f2c!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>f91b8226-969e-4c7d-ae28-870f4aaf4751</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Shaolun</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="G:\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-05-20T07:20:53.465</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="G:\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\TreeProjectRebuild.exe">
+      <PackagePath>TreeProjectRebuild.exe</PackagePath>
+      <Modified>2013-05-21T14:29:11.170</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\TreeProjectRebuild.pdb">
+      <PackagePath>TreeProjectRebuild.pdb</PackagePath>
+      <Modified>2013-05-21T14:29:11.101</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\TreeProjectRebuild\TreeProjectRebuild\Assets\btn.jpg">
+      <PackagePath>Assets\btn.jpg</PackagePath>
+      <Modified>2013-05-20T07:20:37.310</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\TreeProjectRebuild\TreeProjectRebuild\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\TreeProjectRebuild\TreeProjectRebuild\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\TreeProjectRebuild\TreeProjectRebuild\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\TreeProjectRebuild\TreeProjectRebuild\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\App.xaml">
+      <PackagePath>App.xaml</PackagePath>
+      <Modified>2013-05-17T02:01:34.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\Common\StandardStyles.xaml">
+      <PackagePath>Common\StandardStyles.xaml</PackagePath>
+      <Modified>2012-07-26T12:23:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\MainPage.xaml">
+      <PackagePath>MainPage.xaml</PackagePath>
+      <Modified>2013-05-21T08:50:44.654</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="G:\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2013-05-20T07:20:51.139</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
