@@ -18,7 +18,7 @@ namespace TreeProjectRebuild
         double deltaR;
         Color strokeColor, fillColor;
         Root rootModel;
-        Ellipse borderEllipse;
+        Ellipse outerEllipse;
         Ellipse innerEllipse;
         List<RootView> rootViewList;
 
@@ -45,11 +45,12 @@ namespace TreeProjectRebuild
             //canvas.Children.Clear();
             initial_l = 4;
 
-            Ellipse outerEllipse = MakeElli(center.X, center.Y, radius, strokeColor, fillColor);
+            outerEllipse = MakeElli(center.X, center.Y, radius, strokeColor, fillColor);
             outerEllipse.Tapped += outerEllipse_Tapped;
+            outerEllipse.PointerEntered += outerEllipse_PointerEntered;
             canvas.Children.Add(outerEllipse);
 
-            canvas.Children.Add(MakeElli(center.X, center.Y, 3, Colors.Black, Colors.LightGray));
+            canvas.Children.Add(innerEllipse = MakeElli(center.X, center.Y, 3, Colors.Black, Colors.LightGray));
 
             if (rootModel.Level >= level)
                 return;
@@ -75,6 +76,13 @@ namespace TreeProjectRebuild
                     pos[1] = center.Y + l * Math.Sin(radians);
                 }
             }
+        }
+
+        void outerEllipse_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            canvas.Children.Remove(outerEllipse);
+            canvas.Children.Remove(innerEllipse);
+            this.Show(GeneralLevel.Year_Province);
         }
 
         void outerEllipse_Tapped(object sender, TappedRoutedEventArgs e)

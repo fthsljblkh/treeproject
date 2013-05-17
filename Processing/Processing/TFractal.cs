@@ -56,7 +56,7 @@ namespace Processing
             initial_l = 12;//12
             borderR = 600;
             threshold_borderR = 5;
-            root = new Root();177230河北
+            root = new Root();
         }
 
         public TFractal(int nSides, double centerX, double centerY, double borderR, double initial_r, double initial_l, int threshold_borderR)
