@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>AL-HONG</Machine>
+    <WindowsUser>Shaolun</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <RegisteredManifestChecksum>3AF5F387E89C976BD0407C0066761D90FC2221893FE54C5881A65E95EC95DC1E</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>bfd7ba66-6a1c-4aa7-87a7-69a869413420_1.0.0.0_neutral__53vsck799xy3a</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>bfd7ba66-6a1c-4aa7-87a7-69a869413420_53vsck799xy3a!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>bfd7ba66-6a1c-4aa7-87a7-69a869413420</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=saucy</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Shaolun\Downloads\Processing\Processing\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-05-15T02:35:56.000</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Downloads\Processing\Processing\bin\Debug\Processing.exe">
+      <PackagePath>Processing.exe</PackagePath>
+      <Modified>2013-05-16T03:09:40.569</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Downloads\Processing\Processing\bin\Debug\Processing.pdb">
+      <PackagePath>Processing.pdb</PackagePath>
+      <Modified>2013-05-16T03:09:40.547</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Downloads\Processing\Processing\Assets\btn.jpg">
+      <PackagePath>Assets\btn.jpg</PackagePath>
+      <Modified>2013-05-15T01:35:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Downloads\Processing\Processing\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Downloads\Processing\Processing\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Downloads\Processing\Processing\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Downloads\Processing\Processing\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Downloads\Processing\Processing\bin\Debug\App.xaml">
+      <PackagePath>App.xaml</PackagePath>
+      <Modified>2013-05-10T02:29:14.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Downloads\Processing\Processing\bin\Debug\Common\StandardStyles.xaml">
+      <PackagePath>Common\StandardStyles.xaml</PackagePath>
+      <Modified>2012-07-26T12:23:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Downloads\Processing\Processing\bin\Debug\MainPage.xaml">
+      <PackagePath>MainPage.xaml</PackagePath>
+      <Modified>2013-05-15T03:07:30.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Downloads\Processing\Processing\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2013-05-15T01:14:58.000</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
