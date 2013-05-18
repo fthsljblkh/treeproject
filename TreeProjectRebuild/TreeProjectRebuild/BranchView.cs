@@ -9,13 +9,29 @@ namespace TreeProjectRebuild
     class BranchView
     {
         Branch branchModel;
+        internal List<RootView> rootViewList;
 
         internal BranchView(Branch branch) {
             branchModel = branch;
+            rootViewList = new List<RootView>();
         }
 
-        internal void show() { 
-            
+        internal RootView getRootView(int i) {
+            return rootViewList[i];
         }
+
+        internal void addRootView(RootView rv) {
+            rootViewList.Add(rv);
+        }
+
+        internal int Count {
+            get {
+                return rootViewList.Count;
+            }
+        }
+
+        //internal void show() { 
+            
+        //}
     }
 }
