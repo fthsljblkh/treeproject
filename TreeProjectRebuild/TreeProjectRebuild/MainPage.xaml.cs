@@ -26,7 +26,8 @@ namespace TreeProjectRebuild
         {
             this.InitializeComponent();
             Loaded += MainPage_Loaded;
-            DoubleTapped += MainPage_DoubleTapped;
+            //DoubleTapped += MainPage_DoubleTapped;
+
             relation = new List<RootView>();
             RootView.setRelation(relation);
         }
@@ -40,7 +41,7 @@ namespace TreeProjectRebuild
             for (int i = 0; i < bv.Count; ++i) {
                 RootView rv = bv.getRootView(i);
                 double dist = Dist(rv.center, world_view.center);
-                if (distance > dist - rv.radius && distance < dist + rv.radius) {
+                if (distance > dist - rv.radius && distance < dist + rv.radius) {   //距离
                     index = i;
                     break;
                 }
@@ -63,7 +64,7 @@ namespace TreeProjectRebuild
             return Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
         }
 
-        void MainPage_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        /*void MainPage_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             if (!enlarged)
             {
@@ -79,26 +80,27 @@ namespace TreeProjectRebuild
             world_view = new RootView(canvas.ActualWidth / 2, canvas.ActualHeight / 2, canvas.ActualHeight * 2, world_root);
 
             world_view.outerEllipse.PointerMoved += outerEllipse_PointerMoved;
-            world_view.outerEllipse.PointerExited += outerEllipse_PointerExited;*/
+            world_view.outerEllipse.PointerExited += outerEllipse_PointerExited;
             world_view.branchViewList.Clear();
             world_view.Show(GeneralLevel.Decade_Country);
             enlarged = !enlarged;
-        }
+        }*/
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             world_root = new Root(GeneralLevel.Genesis);
             world_root.BuildBranch();
+            
             world_view = new RootView(canvas.ActualWidth / 2, canvas.ActualHeight / 2, canvas.ActualHeight*2, world_root);
-
-            world_view.outerEllipse.PointerMoved += outerEllipse_PointerMoved;
-            world_view.outerEllipse.PointerExited += outerEllipse_PointerExited;
+            
+            //world_view.outerEllipse.PointerMoved += outerEllipse_PointerMoved;
+            //world_view.outerEllipse.PointerExited += outerEllipse_PointerExited;
 
             RootView.SetCanvas(canvas);
             world_view.Show(GeneralLevel.Decade_Country);
-            enlarged = false;
+            //enlarged = false;
 
-            world_view.outerEllipse.Tapped += outerEllipse_Tapped;
+            //world_view.outerEllipse.Tapped += outerEllipse_Tapped;
         }
 
         void outerEllipse_Tapped(object sender, TappedRoutedEventArgs e)

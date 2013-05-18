@@ -25,7 +25,7 @@ namespace TreeProjectRebuild
         internal bool Detected { get; private set; }
 
         static Canvas canvas;
-        static double amp = 1;
+        //static double amp = 1;
         static List<RootView> relation;
 
         internal RootView(double centerX, double centerY, double r, Root root) {  //此root即为调用Show()时作为最外层圆的root
@@ -38,7 +38,8 @@ namespace TreeProjectRebuild
             branchViewList = new List<BranchView>();
 
             Detected = false;
-            outerEllipse = MakeElli(center.X, center.Y, radius + (amp - 1) * 3, strokeColor, fillColor);
+            //outerEllipse = MakeElli(center.X, center.Y, radius + (amp - 1) * 3, strokeColor, fillColor);
+            
         }
 
         internal void SetX(double x){
@@ -49,29 +50,38 @@ namespace TreeProjectRebuild
             center.Y = y;
         }
 
+        internal void SetInitial_l(double l){
+            initial_l = l;
+        }
+
+        internal void update() { 
+            
+        }
+
         internal void Show(GeneralLevel level){
             //canvas.Children.Clear();
-            double delta = (amp - 1) * 3;
-            initial_l = 25 + delta * 8;
+            //double delta = (amp - 1) * 3;
+            //initial_l = 25 + delta * 8;
 
-            //outerEllipse = MakeElli(center.X, center.Y, radius + delta, strokeColor, fillColor);
-            outerEllipse.Tapped += outerEllipse_Tapped;
-            outerEllipse.PointerEntered += outerEllipse_PointerEntered;
-            outerEllipse.PointerExited += outerEllipse_PointerExited;
-            canvas.Children.Add(outerEllipse);
+            //outerEllipse = MakeElli(center.X, center.Y, radius, strokeColor, fillColor);
+            //outerEllipse.Tapped += outerEllipse_Tapped;                             //单击事件
+            //outerEllipse.PointerEntered += outerEllipse_PointerEntered;             //鼠标移入事件
+            //outerEllipse.PointerExited += outerEllipse_PointerExited;               //鼠标移出事件
+            canvas.Children.Add(outerEllipse);                                      //将外围圆添加至canvas
 
-            canvas.Children.Add(innerEllipse = MakeElli(center.X, center.Y, 3 + delta/3, Colors.Black, Colors.LightGray));
+            canvas.Children.Add(innerEllipse);  //将中心圆添加至canvas
 
-            if (rootModel.Level >= level)
+            if (rootModel.Level >= level)                                           //决定是否显示细节
                 return;
 
-            double[] pos = new double[2];
+            double[] pos = new double[2];                                           //子root的坐标
             for (int i = 0; i < rootModel.branchlist.Count; ++i) {
-                double radians = 2 * Math.PI * i / rootModel.branchlist.Count;
-                Branch b = rootModel.branchlist[i];
-                double l = initial_l;
-                double r = 5 + delta*1.3;
-                branchViewList.Add(new BranchView(b));
+                double radians = 2 * Math.PI * i / rootModel.branchlist.Count;      //弧度
+                Branch b = rootModel.branchlist[i];                                 //获取root model的一条branch
+                double l = initial_l;                                               //l为innerEllipse与pos间直线距离
+                //double r = 5 + delta*1.3;
+                double r = 5;
+                branchViewList.Add(new BranchView(b));                              //建立一个branchView并将
                 for (int j = 0; j < b.rootlist.Count; ++j) {
                     pos[0] = center.X + l * Math.Cos(radians);
                     pos[1] = center.Y + l * Math.Sin(radians);
@@ -84,10 +94,54 @@ namespace TreeProjectRebuild
                     double tempL = 1.35*l;
                     double theta = (Math.PI / 180) * 20;
                     r = LowOfCosines(l, tempL, theta) - r;
-                    l = tempL + delta*1.6;
+                    //l = tempL + delta*1.6;
+                    l = tempL;
                     radians += theta;
                     pos[0] = center.X + l * Math.Cos(radians);
                     pos[1] = center.Y + l * Math.Sin(radians);
+                }
+            }
+        }
+
+        static void SetEllipse(Ellipse e, double centerX, double centerY, double radius, Color strokeColor, Color fillColor) {
+            Canvas.SetLeft(e, centerX);
+            Canvas.SetTop(e, centerY);
+            e.Height = radius;
+            e.Width = radius;
+            e.Stroke = new SolidColorBrush(strokeColor);
+            e.Fill = new SolidColorBrush(fillColor);
+        }
+
+        internal void show_notTangent(GeneralLevel level) {   //圆之间不相切 
+            SetEllipse(outerEllipse, center.X, center.Y, radius, Colors.Black, Colors.Gray);
+            canvas.Children.Add(outerEllipse);
+            SetEllipse(innerEllipse, center.X, center.Y, 3, Colors.Black, Colors.White);
+            canvas.Children.Add(innerEllipse);
+
+            if (rootModel.Level >= level)
+                return;
+
+            double[] pos = new double[2];
+            for (int i = 0; i < branchViewList.Count; ++i) { 
+                
+            }
+        }
+
+        internal void BuildBranchView(){
+            outerEllipse = MakeElli(center.X, center.Y, radius, strokeColor, fillColor);
+            outerEllipse.Tapped += outerEllipse_Tapped;                             //单击事件
+            outerEllipse.PointerEntered += outerEllipse_PointerEntered;             //鼠标移入事件
+            outerEllipse.PointerExited += outerEllipse_PointerExited;               //鼠标移出事件
+
+            innerEllipse = MakeElli(center.X, center.Y, 3, Colors.Black, Colors.LightGray);
+
+            foreach (Branch branch in rootModel.branchlist) {
+                BranchView bv = new BranchView(branch);
+                branchViewList.Add(bv);
+                foreach (Root r in branch.rootlist) {
+                    RootView subRoot = new RootView(10, 10, 10, r);
+                    bv.addRootView(subRoot);
+                    subRoot.BuildBranchView();
                 }
             }
         }
@@ -102,9 +156,9 @@ namespace TreeProjectRebuild
             return Math.Sqrt(a * a + b * b - 2 * a * b * Math.Cos(radian));
         }
 
-        internal static void setAmp(double amp) {
+        /*internal static void setAmp(double amp) {
             RootView.amp = amp;
-        }
+        }*/
 
         internal static void setRelation(List<RootView> relation) {
             RootView.relation = relation;
