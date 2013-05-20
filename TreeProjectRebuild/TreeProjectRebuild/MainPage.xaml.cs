@@ -19,6 +19,7 @@ namespace TreeProjectRebuild
     {
         Root world_root;
         RootView world_view;
+        internal RootView currentView;
         Boolean enlarged;
         List<RootView> relation;
 
@@ -26,10 +27,6 @@ namespace TreeProjectRebuild
         {
             this.InitializeComponent();
             Loaded += MainPage_Loaded;
-            //DoubleTapped += MainPage_DoubleTapped;
-
-            relation = new List<RootView>();
-            RootView.setRelation(relation);
         }
 
         void outerEllipse_PointerMoved(object sender, PointerRoutedEventArgs e)
@@ -90,20 +87,29 @@ namespace TreeProjectRebuild
         {
             world_root = new Root(GeneralLevel.Genesis);
             world_root.BuildBranch();
-            
-            world_view = new RootView(canvas.ActualWidth / 2, canvas.ActualHeight / 2, canvas.ActualHeight*2, world_root);
-            
+
+            //DoubleTapped += MainPage_DoubleTapped;
+
+            relation = new List<RootView>();
+            RootView.setRelation(relation);
+
+            world_view = new RootView(world_root);
+            RootView.mp = this;
+            RootView.SetCanvas(canvas);
+            world_view.BuildBranchView();
+            RootView.SetElli(canvas.ActualWidth / 2, canvas.ActualHeight / 2, canvas.ActualHeight / 2, Colors.Black, Colors.Gray, world_view);
+            //RootView.SetElli(canvas.ActualWidth/2, canvas.ActualHeight / 2, 3, Colors.Black, Colors.White, world_view.innerEllipse);
             //world_view.outerEllipse.PointerMoved += outerEllipse_PointerMoved;
             //world_view.outerEllipse.PointerExited += outerEllipse_PointerExited;
 
-            RootView.SetCanvas(canvas);
-            world_view.Show(GeneralLevel.Decade_Country);
+            world_view.show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
+            RootView.setCurrentView(world_view);
             //enlarged = false;
 
             //world_view.outerEllipse.Tapped += outerEllipse_Tapped;
         }
 
-        void outerEllipse_Tapped(object sender, TappedRoutedEventArgs e)
+        /*void outerEllipse_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (relation.Count > 0)
             {
@@ -121,7 +127,7 @@ namespace TreeProjectRebuild
                     relation[i].Show(GeneralLevel.Decade_Country);
                 }
             }
-        }
+        }*/
 
         void outerEllipse_PointerExited(object sender, PointerRoutedEventArgs e)
         {
