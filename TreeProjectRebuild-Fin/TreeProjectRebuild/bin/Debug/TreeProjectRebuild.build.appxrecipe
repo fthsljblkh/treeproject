@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>AL-HONG</Machine>
+    <WindowsUser>Shaolun</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\TreeProjectRebuild.exe">
+      <PackagePath>TreeProjectRebuild.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\TreeProjectRebuild.pdb">
+      <PackagePath>TreeProjectRebuild.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\App.xaml">
+      <PackagePath>App.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\Common\StandardStyles.xaml">
+      <PackagePath>Common\StandardStyles.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\MainPage.xaml">
+      <PackagePath>MainPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
