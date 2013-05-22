@@ -20,31 +20,30 @@ namespace TreeProjectRebuild
     {
         internal Point center;
         internal double radius;  //外围圆半径
-        //double initial_l;
-        //double deltaR;
+         
         Color strokeColor, fillColor;
         internal Root rootModel;
         internal Ellipse outerEllipse;
         internal Ellipse innerEllipse;
-        //List<RootView> rootViewList;
+      
         internal List<BranchView> branchViewList;
         internal List<BranchView> tempBranchViewList;
-       // internal  tempRoot;
 
         internal bool Detected { get; private set; }
 
         static Canvas canvas;
-        //static double amp = 1;
+        
         static List<RootView> relation;
         internal static MainPage mp;
         internal static Stack<RootView> trace = new Stack<RootView>();
-        public String status = "null";
+
+        internal Line line = new Line();
+        internal Line line1 = new Line();
 
         internal RootView(Root r) {
             rootModel = r;
             branchViewList = new List<BranchView>();
             Detected = false;
-            //initial_l = 10;
         }
 
         internal RootView(double centerX, double centerY, double r, Root root) {  //此root即为调用Show()时作为最外层圆的root
@@ -53,12 +52,10 @@ namespace TreeProjectRebuild
             rootModel = root;
             strokeColor = Colors.Black;
             fillColor = Colors.Gray;
-            //rootViewList = new List<RootView>();
+       
             branchViewList = new List<BranchView>();
-
             Detected = false;
-            //outerEllipse = MakeElli(center.X, center.Y, radius + (amp - 1) * 3, strokeColor, fillColor);
-            
+      
         }
 
         internal void SetX(double x){
@@ -74,9 +71,8 @@ namespace TreeProjectRebuild
         }
 
         internal void show_notTangent(GeneralLevel level, double rIncrease, double lIncrease, double init_l, double init_r) {   //圆之间不相切 
-            //SetEllipse(outerEllipse, center.X, center.Y, radius, Colors.Black, Colors.Gray);
+             
             canvas.Children.Add(outerEllipse);
-            //SetEllipse(innerEllipse, center.X, center.Y, 3, Colors.Black, Colors.White);
             canvas.Children.Add(innerEllipse);
 
             if (rootModel.Level >= level)
@@ -94,7 +90,7 @@ namespace TreeProjectRebuild
                     pos[1] = center.Y + l * Math.Sin(radians);
 
                     SetElli(pos[0], pos[1], r, Colors.Black, Colors.Gray, rv);
-                    //SetElli(pos[0], pos[1], 3, Colors.Black, Colors.White, rv.innerEllipse);
+                    
                     rv.show_notTangent(level, rIncrease, lIncrease, l, r);
 
                     r += rIncrease * r;
@@ -144,196 +140,188 @@ namespace TreeProjectRebuild
 
                 if (i == 0)
                 {
-                    Canvas.SetLeft(image, getPos(i).X - 170);//683-220);
-                    Canvas.SetTop(image, getPos(i).Y - 40);//661 + 30);
+                    Canvas.SetLeft(image, getPos(i).X - 170); 
+                    Canvas.SetTop(image, getPos(i).Y - 40); 
                     image.PointerPressed += image0_PointerPressed;
 
                 }
                 else if (i == 1)
                 {
-                    Canvas.SetLeft(image, getPos(i).X - 220);//466 - 220);
-                    Canvas.SetTop(image, getPos(i).Y - 80);//556);
+                    Canvas.SetLeft(image, getPos(i).X - 220); 
+                    Canvas.SetTop(image, getPos(i).Y - 80); 
                     image.PointerPressed += image1_PointerPressed;
 
                 }
                 else if (i == 2)
                 {
-                    Canvas.SetLeft(image, getPos(i).X + 100 );//412 - 220);
-                    Canvas.SetTop(image, getPos(i).Y - 100);//322);
+                    Canvas.SetLeft(image, getPos(i).X + 100 );  
+                    Canvas.SetTop(image, getPos(i).Y - 100); 
                     image.PointerPressed += image2_PointerPressed;
 
                 }
                 else if (i == 3)
                 {
-                    Canvas.SetLeft(image, getPos(i).X + 100);//562 - 220);
-                    Canvas.SetTop(image, getPos(i).Y - 50);//134 - 30);
+                    Canvas.SetLeft(image, getPos(i).X + 100); 
+                    Canvas.SetTop(image, getPos(i).Y - 50); 
                     image.PointerPressed += image3_PointerPressed;
                 }
                 else if (i == 4)
                 {
-                    Canvas.SetLeft(image, getPos(i).X + 120);//803 + 120);
-                    Canvas.SetTop(image, getPos(i).Y + 30);//134 - 30);
+                    Canvas.SetLeft(image, getPos(i).X + 120); ;
+                    Canvas.SetTop(image, getPos(i).Y + 30); 
                     image.PointerPressed += image4_PointerPressed;
                 }
                 else if (i == 5)
                 {
-                    Canvas.SetLeft(image, getPos(i).X );//953 + 120);
-                    Canvas.SetTop(image, getPos(i).Y + 80);//322);
+                    Canvas.SetLeft(image, getPos(i).X ); 
+                    Canvas.SetTop(image, getPos(i).Y + 80); 
                     image.PointerPressed += image5_PointerPressed;
                 }
                 else if (i == 6)
                 {
-                    Canvas.SetLeft(image, getPos(i).X - 190);//899 + 120);
-                    Canvas.SetTop(image, getPos(i).Y + 70);//556);
+                    Canvas.SetLeft(image, getPos(i).X - 190); 
+                    Canvas.SetTop(image, getPos(i).Y + 70); 
                     image.PointerPressed += image6_PointerPressed;
                 }
-               // images.Add(image);
-                // image.PointerPressed
+
                 image.PointerEntered += image_PointerEntered;
                 image.PointerExited += image_PointerExited;
-                //image.PointerPressed += image0_PointerPressed;
-
+        
                 canvas.Children.Add(image);
             }
         }
 
         void image0_PointerPressed(object sender, RoutedEventArgs e)
         {
-            if (status == "null")
+            if (mp.status == "null")
             {
                 canvas.Children.Clear();
                 mp.setBox();
                 showImage();
-                //show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
                 show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-                status = "click";
+                mp.status = "click";
             }
-            else if (status != "reclick") 
+            else if (mp.status != "reclick") 
             {
                 canvas.Children.Clear();
-                mp.setBox();
+                mp.setBox0();
                 dataCanvas(0, branchViewList);
-                status = "reclick";
+                mp.status = "reclick";
             }
         }
 
         void image1_PointerPressed(object sender, RoutedEventArgs e)
         {
-            if (status == "null")
+            if (mp.status == "null")
             {
                 canvas.Children.Clear();
                 mp.setBox();
                 showImage();
-                //show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
                 show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-                status = "click";
+                mp.status = "click";
             }
-            else if (status != "reclick")
+            else if (mp.status != "reclick")
             {
                 canvas.Children.Clear();
-                mp.setBox();
+                mp.setBox0();
                 dataCanvas(1, branchViewList);
-                status = "reclick";
+                mp.status = "reclick";
             }
         }
 
         void image2_PointerPressed(object sender, RoutedEventArgs e)
         {
-            if (status == "null")
+            if (mp.status == "null")
             {
                 canvas.Children.Clear();
                 mp.setBox();
                 showImage();
-                //show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
                 show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-                status = "click";
+                mp.status = "click";
             }
-            else if (status != "reclick")
+            else if (mp.status != "reclick")
             {
                 canvas.Children.Clear();
-                mp.setBox();
+                mp.setBox0();
                 dataCanvas(2, branchViewList);
-                status = "reclick";
+                mp.status = "reclick";
             }
         }
 
         void image3_PointerPressed(object sender, RoutedEventArgs e)
         {
-            if (status == "null")
+            if (mp.status == "null")
             {
                 canvas.Children.Clear();
                 mp.setBox();
                 showImage();
-                //show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
                 show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-                status = "click";
+                mp.status = "click";
             }
-            else if (status != "reclick")
+            else if (mp.status != "reclick")
             {
                 canvas.Children.Clear();
-                mp.setBox();
+                mp.setBox0();
                 dataCanvas(3, branchViewList);
-                status = "reclick";
+                mp.status = "reclick";
             }
         }
 
         void image4_PointerPressed(object sender, RoutedEventArgs e)
         {
-            if (status == "null")
+            if (mp.status == "null")
             {
                 canvas.Children.Clear();
                 mp.setBox();
                 showImage();
-                //show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
                 show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-                status = "click";
+                mp.status = "click";
             }
-            else if (status != "reclick")
+            else if (mp.status != "reclick")
             {
                 canvas.Children.Clear();
-                mp.setBox();
+                mp.setBox0();
                 dataCanvas(4, branchViewList);
-                status = "reclick";
+                mp.status = "reclick";
             }
         }
 
         void image5_PointerPressed(object sender, RoutedEventArgs e)
         {
-            if (status == "null")
+            if (mp.status == "null")
             {
                 canvas.Children.Clear();
                 mp.setBox();
                 showImage();
-                //show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
                 show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-                status = "click";
+                mp.status = "click";
             }
-            else if (status != "reclick")
+            else if (mp.status != "reclick")
             {
                 canvas.Children.Clear();
-                mp.setBox();
+                mp.setBox0();
                 dataCanvas(5, branchViewList);
-                status = "reclick";
+                mp.status = "reclick";
             }
         }
 
         void image6_PointerPressed(object sender, RoutedEventArgs e)
         {
-            if (status == "null")
+            if (mp.status == "null")
             {
                 canvas.Children.Clear();
                 mp.setBox();
                 showImage();
-                //show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
+              
                 show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-                status = "click";
+                mp.status = "click";
             }
-            else if (status != "reclick")//status == "click" && 
+            else if (mp.status != "reclick")//status == "click" && 
             {
                 canvas.Children.Clear();
-                mp.setBox();
+                mp.setBox0();
                 dataCanvas(6,branchViewList);
-                status = "reclick";
+                mp.status = "reclick";
             }
         }
         void getDis(double length, double[] data, ref double[] radius, ref double[] dis)
@@ -360,10 +348,8 @@ namespace TreeProjectRebuild
             }
         }
 
-        void setControl(GeneralLevel level,RootView rootView) 
+        internal void setControl(GeneralLevel level,RootView rootView) 
         {
-           // if (level == GeneralLevel.Decade_Country) 
-            //{
                 int length = rootView.branchViewList.Count;
                 int size = rootView.branchViewList[0].rootViewList.Count;
                 
@@ -374,49 +360,52 @@ namespace TreeProjectRebuild
                     tempE.Fill = new SolidColorBrush(Colors.Blue);
                     tempE.Width = 30;
                     tempE.Height = 30;
-                    double left = Canvas.GetLeft( rootView.branchViewList[i].rootViewList[size - 1].outerEllipse);
-                    double top = Canvas.GetTop(rootView.branchViewList[i].rootViewList[size - 1].outerEllipse);
+                   // double left = Canvas.GetLeft( rootView.branchViewList[i].rootViewList[size - 1].outerEllipse);
+                   // double top = Canvas.GetTop(rootView.branchViewList[i].rootViewList[size - 1].outerEllipse);
+                  //  Debug.WriteLine("left: " + left);
+                  //  Debug.WriteLine("top: " + top);
+
                     if (level == GeneralLevel.Decade_Country)
                     {
                         if (i == 0)
                         {
-                            Canvas.SetLeft(tempE, left - 60);
-                            Canvas.SetTop(tempE, top + 30);
+                            Canvas.SetLeft(tempE, 110);//left - 60);
+                            Canvas.SetTop(tempE, 360);//top + 30);
                         }
                         else if (i == 1)
                         {
-                            Canvas.SetLeft(tempE, left - 30);
-                            Canvas.SetTop(tempE, top - 30);
+                            Canvas.SetLeft(tempE, 216);//left - 30);
+                            Canvas.SetTop(tempE, 117);//top - 30);
                         }
                         else if (i == 2)
                         {
-                            Canvas.SetLeft(tempE, left + 70);
-                            Canvas.SetTop(tempE, top - 40);
+                            Canvas.SetLeft(tempE, 499);//left + 70);
+                            Canvas.SetTop(tempE, 31);//top - 40);
                         }
                         else if (i == 3)
                         {
-                            Canvas.SetLeft(tempE, left + 120);
-                            Canvas.SetTop(tempE, top - 50);
+                            Canvas.SetLeft(tempE, 733);//left + 120);
+                            Canvas.SetTop(tempE, 97);//top - 50);
                         }
                         else if (i == 4)
                         {
-                            Canvas.SetLeft(tempE, left + 150);
-                            Canvas.SetTop(tempE, top + 40);
+                            Canvas.SetLeft(tempE, 839);//left + 150);
+                            Canvas.SetTop(tempE, 370);//top + 40);
                         }
                         else if (i == 5)
                         {
-                            Canvas.SetLeft(tempE, left + 130);
-                            Canvas.SetTop(tempE, top + 100);
+                            Canvas.SetLeft(tempE, 743);//left + 130);
+                            Canvas.SetTop(tempE, 614);//top + 100);
                         }
                         else if (i == 6)
                         {
-                            Canvas.SetLeft(tempE, left + 50);
-                            Canvas.SetTop(tempE, top + 130);
+                            Canvas.SetLeft(tempE, 479);//left + 50);
+                            Canvas.SetTop(tempE, 720);//top + 130);
                         }
                         else if (i == 7)
                         {
-                            Canvas.SetLeft(tempE, left );
-                            Canvas.SetTop(tempE, top + 130);
+                            Canvas.SetLeft(tempE, 246);//left );
+                            Canvas.SetTop(tempE, 644);//top + 130);
                         }
                         tempE.PointerPressed += tempE_PointerPressed;
                     }
@@ -424,57 +413,59 @@ namespace TreeProjectRebuild
                     {
                         if (i == 0)
                         {
-                            Canvas.SetLeft(tempE, left+100);
-                            Canvas.SetTop(tempE, top+190);
+                            Canvas.SetLeft(tempE, 623);// left+100);
+                            Canvas.SetTop(tempE,  703);//top+190);
                         }
                         else if (i == 1)
                         {
-                            Canvas.SetLeft(tempE, left + 40);
-                            Canvas.SetTop(tempE, top + 190);
+                            Canvas.SetLeft(tempE, 318);//left + 40);
+                            Canvas.SetTop(tempE, 703);//top + 190);
                         }
                         else if (i == 2)
                         {
-                            Canvas.SetLeft(tempE, left - 50);
-                            Canvas.SetTop(tempE, top + 80);
+                            Canvas.SetLeft(tempE, 106);//left - 50);
+                            Canvas.SetTop(tempE, 382);//top + 80);
                         }
                         else if (i == 3)
                         {
-                            Canvas.SetLeft(tempE, left - 50);
-                            Canvas.SetTop(tempE, top);
+                            Canvas.SetLeft(tempE, 228);//left - 50);
+                            Canvas.SetTop(tempE, 90);//top);
                         }
                         else if (i == 4)
                         {
-                            Canvas.SetLeft(tempE, left + 150);
-                            Canvas.SetTop(tempE, top - 30);
+                            Canvas.SetLeft(tempE, 673);//left + 150);
+                            Canvas.SetTop(tempE, 60);//top - 30);
                         }
                         else if (i == 5)
                         {
-                            Canvas.SetLeft(tempE, left + 200);
-                            Canvas.SetTop(tempE, top + 70);
+                            Canvas.SetLeft(tempE, 845);//left + 200);
+                            Canvas.SetTop(tempE, 372);//top + 70);
                         }
+
                         tempE.PointerPressed += tempEY_PointerPressed;
                     }
-                   
+
+                    //Canvas.SetLeft(tempE, 50 * i );
+                    //Canvas.SetTop(tempE, 0 );
                     tempBranchViewList = rootView.branchViewList;
                     
                     canvas.Children.Add(tempE);
                 }
-         //   }
         }
 
         void tempE_PointerPressed(object sender, RoutedEventArgs e)
         {
-            status = "year";
+            mp.status = "year";
             canvas.Children.Clear();
-            mp.setBox();
+            mp.setBox0();
             dataCanvas(0, tempBranchViewList);
         }
 
         void tempEY_PointerPressed(object sender, RoutedEventArgs e)
         {
-            status = "city";
+            mp.status = "city";
             canvas.Children.Clear();
-            mp.setBox();
+            mp.setBox0();
             dataCanvas(0, tempBranchViewList);
         }
 
@@ -533,7 +524,6 @@ namespace TreeProjectRebuild
 
             if (data.Length >= 2)
             {
-
                 Line yLine = new Line();
                 yLine.X1 = dis[0];
                 yLine.Y1 = 300;
@@ -553,7 +543,7 @@ namespace TreeProjectRebuild
                 canvas.Children.Add(xLine);
             }
             Button btn = new Button();
-            btn.Content = "Back";
+            btn.Content = "Return";
             btn.Width = 100;
             btn.Height = 100;
             btn.Foreground = new SolidColorBrush(Colors.White);
@@ -562,76 +552,74 @@ namespace TreeProjectRebuild
             btn.Tapped += btn_Tapped;
             Canvas.SetLeft(btn, 1200);
             Canvas.SetTop(btn, 100);
-            canvas.Children.Add(btn);     
-
+            canvas.Children.Add(btn);
+ 
         }
 
         void btn_Tapped(object sender, RoutedEventArgs e) 
         {
-            if (status == "reclick")
+            if (mp.status == "reclick")
             {
                 canvas.Children.Clear();
                 mp.setBox();
                 showImage();
-                //show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
                 show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-                status = "click";
-            }else if(status == "year")
+                mp.status = "click";
+            }
+            else if (mp.status == "year")
             {
                 canvas.Children.Clear();
                 mp.setBox();
                 show_notTangent(GeneralLevel.Year_Province, 0.3, 1.2, 10, 5);
                 setControl(GeneralLevel.Decade_Country, mp.currentView);
-                status = "reclick";
+                mp.status = "reclick";
             }
-            else if (status == "city") 
+            else if (mp.status == "city") 
             {
                 canvas.Children.Clear();
                 mp.setBox();
                 show_notTangent(GeneralLevel.Season_City, 0.6, 1.3, 30, 20);
                 setControl(GeneralLevel.Year_Province, mp.currentView);
-                status = "year";
+                mp.status = "year";
             }
-            else if (status == "event") 
+            else if (mp.status == "event") 
             {
                 canvas.Children.Clear();
                 mp.setBox();
                 showImage();
-                //show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
                 show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-                status = "click";
+                mp.status = "click";
             }
-            else if (status == "enter") 
+            else if (mp.status == "enter") 
             {
                 canvas.Children.Clear();
                 mp.setBox();
-                if (rootModel.Level == GeneralLevel.Decade_Country) 
+       
+                if (rootModel.Level == GeneralLevel.Genesis) 
                 {
                     showImage();
-                    //show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
                     show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-                    status = "reclick";
+                    mp.status = "click";
                 }
-                else if (rootModel.Level == GeneralLevel.Year_Province)
+                else if (rootModel.Level == GeneralLevel.Decade_Country)
                 {
                     show_notTangent(GeneralLevel.Year_Province, 0.3, 1.2, 10, 5);
                     setControl(GeneralLevel.Decade_Country, mp.currentView);
-                    status = "reclick";
+                    mp.status = "click";
                 }
-                else if (rootModel.Level == GeneralLevel.Season_City) 
+                else if (rootModel.Level == GeneralLevel.Year_Province) 
                 {
                     show_notTangent(GeneralLevel.Season_City, 0.6, 1.3, 30, 20);
                     setControl(GeneralLevel.Year_Province, mp.currentView);
-                    status = "reclick";
+                    mp.status = "click";
                 }
             }
         }
 
         void image_PointerEntered(object sender, RoutedEventArgs e)
         {
-            if (status == "null") 
+            if (mp.status == "null") 
             {
-                //show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
                 show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
             }
             
@@ -639,7 +627,7 @@ namespace TreeProjectRebuild
 
         void image_PointerExited(object sender, RoutedEventArgs e)
         {
-            if (status == "null") 
+            if (mp.status == "null") 
             {
                 canvas.Children.Clear();
                 mp.setBox();
@@ -650,6 +638,11 @@ namespace TreeProjectRebuild
 
         internal void BuildBranchView(){
             outerEllipse = new Ellipse();
+            if (rootModel.Level == GeneralLevel.Decade_Country)
+            {
+                outerEllipse.RightTapped += outerEllipse_RightTapped;
+            }
+                
             outerEllipse.Tapped += outerEllipse_Tapped;                             //单击事件
             outerEllipse.PointerEntered += outerEllipse_PointerEntered;             //鼠标移入事件
             outerEllipse.PointerExited += outerEllipse_PointerExited;               //鼠标移出事件
@@ -696,11 +689,65 @@ namespace TreeProjectRebuild
             Detected = true;
         }
 
+        void relationCanvas(List<Point> tempPoint) 
+        {
+            line.Stroke = new SolidColorBrush(Colors.Red);
+            
+            line1.Stroke = new SolidColorBrush(Colors.Blue);
+            double multiIndex = 2;
+
+            line.X1 = tempPoint[0].X;
+            line.Y1 = tempPoint[0].Y;
+            line.X2 = (tempPoint[1].X - tempPoint[0].X) * (multiIndex / (multiIndex + 1)) + tempPoint[0].X;
+            line.Y2 = (tempPoint[1].Y - tempPoint[0].Y) * (multiIndex / (multiIndex + 1)) + tempPoint[0].Y;
+
+
+            line1.X1 = (tempPoint[1].X - tempPoint[0].X) * (multiIndex / (multiIndex + 1)) + tempPoint[0].X;
+            line1.Y1 = (tempPoint[1].Y - tempPoint[0].Y) * (multiIndex / (multiIndex + 1)) + tempPoint[0].Y;
+            line1.X2 = tempPoint[1].X;
+            line1.Y2 = tempPoint[1].Y;
+
+            
+
+            if (!canvas.Children.Contains(line)) 
+            {
+                canvas.Children.Add(line);
+                canvas.Children.Add(line1);
+            }
+        }
+
+        void outerEllipse_RightTapped(object sender, RightTappedRoutedEventArgs e) 
+        {
+            if (mp.point.Count < 2)
+            {
+                Point tempPoint = new Point();
+                tempPoint.X = Canvas.GetLeft(this.outerEllipse) + this.outerEllipse.Width / 2;
+                tempPoint.Y = Canvas.GetTop(this.outerEllipse) + this.outerEllipse.Height / 2;
+                mp.point.Add(tempPoint);
+                if (mp.point.Count == 1)
+                {
+                    mp.ras0 = this.outerEllipse.Width;
+                }
+            }
+            if (mp.point.Count == 2)
+            {
+                if (mp.ras0.Equals(this.outerEllipse.Width))
+                {
+                    relationCanvas(mp.point);
+                }
+                mp.point.Clear();
+                //    mp.point.RemoveAt(1);
+
+            } 
+        }
+
         void outerEllipse_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            //Ellipse elli = sender as Ellipse;
-            //elli.Stroke = new SolidColorBrush(Colors.Red);
-
+          //  if(e.GetPosition )
+           // Cursors.
+           // if (Control.) { }
+            
+              
             if (rootModel.Level < GeneralLevel.Season_City && rootModel.Level > mp.currentView.rootModel.Level)
             {
                 trace.Push(mp.currentView);
@@ -715,26 +762,19 @@ namespace TreeProjectRebuild
                 setControl(rootModel.Level,this);
 
             }
-            /*else if (rootModel.Level == mp.currentView.rootModel.Level && trace.Count > 0) {
+            else if (mp.status == "enter")
+            {
+                List<BranchView> branchViewList0 = new List<BranchView>();
+                Branch branch = new Branch(rootModel.Level);
+                BranchView tempBranch = new BranchView(branch);
+                for (int i = 0; i < mp.relation.Count; ++i)
+                {
+                    tempBranch.addRootView(mp.relation[i]);
+                }
+                branchViewList0.Add(tempBranch);
                 canvas.Children.Clear();
-                mp.setBox();
-                RootView parent = trace.Pop();
-                SetElli((canvas.ActualWidth - 400) / 2, canvas.ActualHeight / 2, (canvas.ActualHeight - 100) / 2, Colors.Black, Colors.Gray, parent);
-                if(rootModel.Level == GeneralLevel.Year_Province)
-                    parent.show_notTangent(GeneralLevel.Year_Province, 0.3, 1.2, 10, 5);
-                else if (rootModel.Level == GeneralLevel.Decade_Country)
-                {
-                    //canvas.Children.Clear();
-                    parent.showImage();
-                    //parent.show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
-                    parent.show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-                }
-                setCurrentView(parent);
-                if (rootModel.Level == GeneralLevel.Year_Province)
-                {
-                    setControl(rootModel.Level, this);
-                }
-            }*/
+                dataCanvas(0, branchViewList0);
+            }
         }
 
         internal static void setCurrentView(RootView rv) {

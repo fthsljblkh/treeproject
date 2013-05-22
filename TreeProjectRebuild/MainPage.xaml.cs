@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -22,11 +23,15 @@ namespace TreeProjectRebuild
         RootView world_view;
         internal RootView currentView;
         Boolean enlarged;
-        List<RootView> relation;
+        internal List<RootView> relation;
         ComboBox box = new ComboBox();
         TextBox text = new TextBox();
+        public String status;
 
-        internal Button returnButton;
+        internal List<Point> point = new List<Point>();
+        
+        internal Button returnButton = new Button { Content = "Return" };
+        internal double ras0 = 0;
 
         public MainPage()
         {
@@ -56,10 +61,11 @@ namespace TreeProjectRebuild
                 rv.outerEllipse.Fill = new SolidColorBrush(Colors.Gray);
             }
             relation.Clear();
+            status = "click";
 
             if (index >= 0)
             {
-                world_view.status = "enter";
+                status = "enter";
                 foreach (BranchView branchView in currentView.branchViewList)
                 {
                     branchView.getRootView(index).outerEllipse.Fill = new SolidColorBrush(Colors.Aqua);
@@ -68,40 +74,18 @@ namespace TreeProjectRebuild
             }
         }
 
-        void canvas_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            //if (world_view.status == "enter")
-           // {
-            Debug.WriteLine("hello");
-                if (e.Key.Equals(Windows.System.VirtualKey.A))
-                {
-                    List<BranchView> branchViewList0 = new List<BranchView>();
-                    Branch branch = new Branch(world_view.rootModel.Level);
-                    BranchView tempBranch = new BranchView(branch);
-                    for (int i = 0; i < relation.Count; ++i)
-                    {
-                        tempBranch.addRootView(relation[i]);
-                    }
-                    branchViewList0.Add(tempBranch);
-                    canvas.Children.Clear();
-                    world_view.dataCanvas(0, branchViewList0);
-                }
-          //  }
-        }
-       
-        static double Dist(Point a, Point b) {
+        internal double Dist(Point a, Point b) {
             return Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
         }
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            setBox();
-             
+            status = "null";
             world_root = new Root(GeneralLevel.Genesis);
             world_root.BuildBranch();
 
             //DoubleTapped += MainPage_DoubleTapped;            
-            canvas.KeyDown += canvas_KeyDown;
+            
             relation = new List<RootView>();
             RootView.setRelation(relation);
 
@@ -114,7 +98,6 @@ namespace TreeProjectRebuild
 
             //world_view.show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
             //world_view.show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
-            returnButton = new Button { Content = "Return", FontSize = 36 };
 
             RootView.setCurrentView(world_view);
             world_view.showImage();
@@ -132,10 +115,14 @@ namespace TreeProjectRebuild
             
             text.Text = "欢迎使用";
             text.Background = new SolidColorBrush(Colors.Wheat);
-            
-            //enlarged = false;
 
-            //world_view.outerEllipse.Tapped += outerEllipse_Tapped;
+            returnButton.Content = "Return";
+            returnButton.Foreground = new SolidColorBrush(Colors.White);
+            returnButton.Background = new SolidColorBrush(Colors.Black);
+            returnButton.Tapped += returnButton_Tapped;
+            setBox();
+            
+            
             currentView.outerEllipse.PointerMoved += outerEllipse_PointerMoved;
             currentView.outerEllipse.PointerExited += outerEllipse_PointerExited;
         }
@@ -145,17 +132,27 @@ namespace TreeProjectRebuild
             if (RootView.trace.Count > 0)
             {
                 canvas.Children.Clear();
+                
                 RootView parent = RootView.trace.Pop();
+                
                 RootView.SetElli((canvas.ActualWidth - 400) / 2, canvas.ActualHeight / 2, (canvas.ActualHeight - 100) / 2, Colors.Black, Colors.Gray, parent);
                 if (parent.rootModel.Level == GeneralLevel.Decade_Country)
-                    //parent.show_notTangent(GeneralLevel.Year_Province, 0.4, 1.3, 10, 5);
+                {
                     parent.show_notTangent(GeneralLevel.Year_Province, 0.3, 1.2, 10, 5);
-                else if (parent.rootModel.Level == GeneralLevel.Genesis)
-                    //parent.show_notTangent(GeneralLevel.Decade_Country, 0.4, 1.3, 10, 5);
+                }
+                else if (parent.rootModel.Level == GeneralLevel.Genesis) 
+                {
+                    parent.showImage();
                     parent.show_notTangent(GeneralLevel.Decade_Country, 0.3, 1.2, 10, 5);
+                }
+                    
                 RootView.setCurrentView(parent);
-
-                canvas.Children.Add(returnButton);
+                Debug.WriteLine(parent.branchViewList.Count);
+                if (parent.rootModel.Level == GeneralLevel.Decade_Country)
+                {
+                    world_view.setControl(GeneralLevel.Decade_Country, parent);
+                }
+                setBox();
             }
         }
 
@@ -173,11 +170,28 @@ namespace TreeProjectRebuild
             Canvas.SetTop(text,canvas.ActualHeight - 300);
             Canvas.SetLeft(text,canvas.ActualWidth - 300);
             canvas.Children.Add(text);
-
-            Canvas.SetLeft(returnButton, 50);
-            Canvas.SetTop(returnButton, 50);
+           
+            returnButton.Width = 100;
+            returnButton.Height = 100;
+            Canvas.SetLeft(returnButton, 1200);
+            Canvas.SetTop(returnButton, 100);
             canvas.Children.Add(returnButton);
-            returnButton.Tapped += returnButton_Tapped;
+        }
+
+        public void setBox0()
+        {
+            box.Width = 300;
+            box.Height = 100;
+            Canvas.SetTop(box, 0);
+            Canvas.SetLeft(box, canvas.ActualWidth - 300);
+            box.SelectionChanged += box_SelectionChanged;
+            canvas.Children.Add(box);
+            text.Width = 300;
+            text.Height = 300;
+
+            Canvas.SetTop(text, canvas.ActualHeight - 300);
+            Canvas.SetLeft(text, canvas.ActualWidth - 300);
+            canvas.Children.Add(text);
         }
 
         void box_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -187,7 +201,7 @@ namespace TreeProjectRebuild
                 
                 if (box.SelectedIndex == 0) 
                 {
-                    world_view.status = "event";
+                    status = "event";
                     text.Text = "唐山大地震";
                     canvas.Children.Clear();
                     world_view.dataCanvas(0,world_view.branchViewList[0].rootViewList[0].branchViewList);
@@ -195,7 +209,7 @@ namespace TreeProjectRebuild
                 else if (box.SelectedIndex == 1) 
                 {
                     text.Text = "北京奥运会";
-                    world_view.status = "event";
+                    status = "event";
                     text.Text = "唐山大地震";
                     canvas.Children.Clear();
                     world_view.dataCanvas(0, world_view.branchViewList[0].rootViewList[0].branchViewList);
@@ -203,7 +217,7 @@ namespace TreeProjectRebuild
                 else if (box.SelectedIndex == 2) 
                 {
                     text.Text = "汶川地震";
-                     world_view.status = "event";
+                    status = "event";
                     text.Text = "唐山大地震";
                     canvas.Children.Clear();
                     world_view.dataCanvas(0,world_view.branchViewList[0].rootViewList[0].branchViewList);
@@ -218,6 +232,8 @@ namespace TreeProjectRebuild
                 rv.outerEllipse.Fill = new SolidColorBrush(Colors.Gray);
             }
             relation.Clear();
+
+            status = "click";
         }
 
         /// <summary>
