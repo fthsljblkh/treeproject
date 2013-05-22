@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>AL-HONG</Machine>
+    <WindowsUser>Shaolun</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <RegisteredManifestChecksum>20E709AA3983A567504A54A2C11FEA8D649841F8D00A850768B91AC41608F426</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>f91b8226-969e-4c7d-ae28-870f4aaf4751_1.0.0.0_neutral__88x9h845m1f2c</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>f91b8226-969e-4c7d-ae28-870f4aaf4751_88x9h845m1f2c!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>f91b8226-969e-4c7d-ae28-870f4aaf4751</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Shaolun</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-05-22T11:46:46.600</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\TreeProjectRebuild.exe">
+      <PackagePath>TreeProjectRebuild.exe</PackagePath>
+      <Modified>2013-05-22T15:04:30.107</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\TreeProjectRebuild.pdb">
+      <PackagePath>TreeProjectRebuild.pdb</PackagePath>
+      <Modified>2013-05-22T15:04:30.081</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-04-02T15:39:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\App.xaml">
+      <PackagePath>App.xaml</PackagePath>
+      <Modified>2013-05-17T02:01:33.530</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\Common\StandardStyles.xaml">
+      <PackagePath>Common\StandardStyles.xaml</PackagePath>
+      <Modified>2012-07-26T12:23:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\MainPage.xaml">
+      <PackagePath>MainPage.xaml</PackagePath>
+      <Modified>2013-05-22T14:30:15.189</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Shaolun\Documents\Visual Studio 2012\Projects\TreeProjectRebuild\TreeProjectRebuild\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2013-05-22T11:46:46.387</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
