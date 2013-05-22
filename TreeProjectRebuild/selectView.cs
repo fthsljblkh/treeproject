@@ -21,7 +21,7 @@ namespace TreeProjectRebuild
         internal void addRootView(RootView rv) {
 		private void get_key(object sender, KeyEventArgs e)
 		{
-			if （e.KeyValue == control)
+			if (e.KeyValue == control)
 			{
 			//message.Show("是否获得ctrl");
 			//获取圆座标
