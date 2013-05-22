@@ -169,11 +169,11 @@ namespace TreeProjectRebuild
         }
 	public void confirmButton_Tapped(object sender, TappedRoutedEventArgs e)
 	{
-		
+		//从已经获取的 list 里面拿到数据，绘制图片
 
-		//根据 SelectView list 中的内容画新的页面
+		
 	}
-	public internal 
+	
         public void setBox() 
         {
             box.Width = 300;
