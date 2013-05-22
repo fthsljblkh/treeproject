@@ -24,7 +24,7 @@ namespace TreeProjectRebuild
 			if (e.KeyValue == control)
 			{
 			//message.Show("是否获得ctrl");
-			//获取圆座标
+			//获取圆坐标
 			
 				selectViewList.add(rv);	//获得一个焦点添加一个对象
 			}
