@@ -169,9 +169,12 @@ namespace TreeProjectRebuild
         }
 	public void confirmButton_Tapped(object sender, TappedRoutedEventArgs e)
 	{
-		
+		private void button1_Click(object sender, EventArgs e)
+		{
+			if(
+		}
 
-		//根据 SelectView list 中的内容画新的页面
+	//调用 SelectView 画新的页面
 	}
 	public internal 
         public void setBox() 
